@@ -2,7 +2,7 @@ defmodule Local.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :local,
+    [app: :scope,
      version: "0.1.0",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
