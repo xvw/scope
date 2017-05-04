@@ -14,7 +14,9 @@ defmodule Local.Mixfile do
         extras: ["README.md"]
       ],
       source_url: "https://github.com/xvw/scope",
-      homepage_url: "https://github.com/xvw/scope"
+      homepage_url: "https://github.com/xvw/scope",
+      package: package(),
+      description: description()
     ]
   end
 
@@ -38,4 +40,21 @@ defmodule Local.Mixfile do
   defp deps do
     [{:ex_doc, "~> 0.14", only: :dev, runtime: false}]
   end
+
+  defp description do 
+    """
+    Scope is a small module that provides two macros to facilitate 
+    function overload and local import/aliases execution.
+    """
+  end
+
+  defp package do
+    [
+     name: :scope,
+     files: ["lib", "mix.exs", "README*", "LICENSE*"],
+     maintainers: ["Xavier Van de Woestyne"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/xvw/scope",
+              "Docs" => "http://hexdoc.pm/scope"}]
+end
 end
