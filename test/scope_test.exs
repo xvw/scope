@@ -28,6 +28,18 @@ defmodule ScopeTest do
     end
     assert x == "Hello World !!!"
   end
+
+  test "scoped importation with expression" do 
+    import Scope 
+    x = local (overload [+: 2, -: 2], from: Kernel, with: Test) do 
+      a = (1 + 3 - 2)
+      b = (1 - 3 + 2)
+      c = a + b
+    end
+    assert 1+1 == 2 
+    assert x == [[2, [1, 3]], [[3, 1], 2]]
+  end
+  
   
   
   

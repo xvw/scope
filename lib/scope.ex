@@ -13,12 +13,41 @@ defmodule Scope do
 
   ## Local importation
 
-  ### Simple approach
-
+  You can just import one or more module :
   ```
   import Scope 
   x = local System do
     user_home <> " !"
+  end
+
+  # Or multiple module
+  y = local Elixir.{System, Path} do 
+    absname(user_home())
+  end
+
+  # Or specifics function from a module 
+  z = local [user_home: 0, user_home!: 0] in System do 
+    user_home <> " !"
+  end
+  ```
+
+  You can also directly use an expression:
+  ```
+  import Scope 
+
+  a = local (overload [+: 2, -: 2], from: Kernel, with: Test) do 
+    1 + 2 - 3
+  end
+
+  b = 1 + 2 - 3 
+
+  # a == [3, [1, 2]]
+  # b == 0
+
+  c = local (import Test) do 
+    a = 1 + 2 
+    b = 1 - 2 
+    a - b 
   end
   ```
 
@@ -30,6 +59,11 @@ defmodule Scope do
   end
 
   @doc """
+  Import module `from` except the gived functions and 
+  import module `with` with only the gived functions.
+
+  This is mainly useful for overloading operators used in `Kernel`.
+  (Arithmetics operators for example)
   """
   defmacro overload(methods, from: a, with: b) do 
     quote do 
@@ -40,6 +74,8 @@ defmodule Scope do
 
 
   @doc """
+  Generate the execution of a lambda, with the importation 
+  of the gived module expression.
   """
   defmacro local(module_expr, body)
 
