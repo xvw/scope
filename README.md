@@ -5,7 +5,7 @@ function overload and local import/aliases execution.
 
 ## Overload functions
 
-```
+```elixir
 import Scope 
 overload [+: 2, -: 2], from: Kernel, with: Test
 1 + 3 - 2 # gives [2, [1, 3]]
@@ -14,7 +14,8 @@ overload [+: 2, -: 2], from: Kernel, with: Test
 ## Local importation
 
 You can just import one or more module :
-```
+
+```elixir
 import Scope 
 x = local System do
   user_home <> " !"
@@ -32,7 +33,8 @@ end
 ```
 
 You can also directly use an expression:
-```
+
+```elixir
 import Scope 
 
 a = local (overload [+: 2, -: 2], from: Kernel, with: Test) do 
