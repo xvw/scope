@@ -61,7 +61,7 @@ by adding `scope` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:scope, "~> 0.1.0"}]
+  [{:scope, "~> 1.0.0"}]
 end
 ```
 
